@@ -80,7 +80,43 @@ class TicTacToe {
 		}
 	}
 	boolean checkWin(char ch){
-		if(map[0][0] == ch && map[0][1] == ch && map[0][2] == ch) return true;
+		for (int i=0; i<SIZE;i++) {//горизонтали (смысл:найти неодинаковый символ)
+			for (int j=0; j<SIZE;j++) {
+				if (map[i][j]!=ch) break;
+				else {
+					if (j==SIZE-1) return true;
+				}
+			}					
+		}
+		
+		
+		for (int j=0;j<SIZE;j++){//вертикали
+			for (int i=0; i<SIZE;i++) {
+				if (map[i][j]!=ch) break;
+				else {
+					if (i==SIZE-1) return true;
+				}
+			}
+		}
+		
+		
+		for (int i=0; i<SIZE;i++) {//1я диагональ
+			if (map[i][i]!=ch) break;
+			else {
+				if (i==SIZE-1) return true;
+			}
+		}	
+
+		
+		for (int i=0; i<SIZE;i++) {//2я диагональ
+			if (map[SIZE-1-i][i]!=ch)break;
+			else {
+				if (i==SIZE-1) return true;
+			}
+		}
+		return false;			
+		
+		/*if(map[0][0] == ch && map[0][1] == ch && map[0][2] == ch) return true;
 		if(map[1][0] == ch && map[1][1] == ch && map[1][2] == ch) return true;
 		if(map[2][0] == ch && map[2][1] == ch && map[2][2] == ch) return true;
 		
@@ -89,8 +125,8 @@ class TicTacToe {
 		if(map[0][2] == ch && map[1][2] == ch && map[2][2] == ch) return true;
 		
 		if(map[0][0] == ch && map[1][1] == ch && map[2][2] == ch) return true;
-		if(map[2][0] == ch && map[1][1] == ch && map[0][2] == ch) return true;
-		return false;		
+		if(map[2][0] == ch && map[1][1] == ch && map[0][2] == ch) return true;*/
+				
 	}
 	boolean isMapFull(){
 		for (int i = 0; i < SIZE; i++) {
