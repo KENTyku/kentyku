@@ -2,8 +2,8 @@
 *	avtor: Tveritin Yuri
 *	version: 15.05.2017
 */
-/*import java.util.Random;
-import java.util.Scanner;*/
+import java.util.Random;
+import java.util.Scanner;
 
 class TicTacToe {
 	
@@ -12,8 +12,8 @@ class TicTacToe {
 	final char DOT_O='o';
 	final char DOT_EMPTY='.';
 	char[][] map=new char[SIZE][SIZE];
-	//Scanner sc=new Scanner(System.in);
-	//Random rand=new Random();
+	Scanner sc=new Scanner(System.in);
+	Random rand=new Random();
 	
 	public static void main(String [] args) { 
 		new TicTacToe().go();
@@ -29,20 +29,22 @@ class TicTacToe {
 				break;
 			}
 			if (isMapFull()){
-				System.out.println(Sorry,Draw!);
+				System.out.println("Sorry,Draw!");
 				break;				
 			}
-			humanTurn();
+			aiTurn();
+			System.out.println();
 			printMap();
-			if (checkWin(DOT_X)){
+			if (checkWin(DOT_O)){
 				System.out.println("You won!");
 				break;
 			}
-			if (isMapFull()){
-				System.out.println(Sorry,Draw!);
+			/*if (isMapFull()){
+				System.out.println("Sorry,Draw!");
 				break;
-			}
+			}*/
 		}
+		System.out.println("GAME OVER.");
 	}
 	void initMap(){
 		for (int i=0;i<SIZE;i++){
@@ -51,5 +53,56 @@ class TicTacToe {
 			}
 		}
 			
+	}
+	void humanTurn(){
+		int x,y;
+		do {
+			System.out.println("Enter X and Y (1-3)");
+			x = sc.nextInt() - 1;
+			y = sc.nextInt() - 1;
+		}while (!isCellValid(x, y));
+		map[y][x] = DOT_X;
+	}
+	void aiTurn(){
+		int x,y;
+		do {			
+			x = rand.nextInt(SIZE);
+			y = rand.nextInt(SIZE);
+		}while (!isCellValid(x, y));
+		map[y][x] = DOT_O;
+	}
+	void printMap(){
+		for (int i=0;i<SIZE;i++){
+			for (int j=0;j<SIZE;j++){
+				System.out.print(map[i][j]+" ");
+			}
+			System.out.println();			
+		}
+	}
+	boolean checkWin(char ch){
+		if(map[0][0] == ch && map[0][1] == ch && map[0][2] == ch) return true;
+		if(map[1][0] == ch && map[1][1] == ch && map[1][2] == ch) return true;
+		if(map[2][0] == ch && map[2][1] == ch && map[2][2] == ch) return true;
+		
+		if(map[0][0] == ch && map[1][0] == ch && map[2][0] == ch) return true;
+		if(map[0][1] == ch && map[1][1] == ch && map[2][1] == ch) return true;
+		if(map[0][2] == ch && map[1][2] == ch && map[2][2] == ch) return true;
+		
+		if(map[0][0] == ch && map[1][1] == ch && map[2][2] == ch) return true;
+		if(map[2][0] == ch && map[1][1] == ch && map[0][2] == ch) return true;
+		return false;		
+	}
+	boolean isMapFull(){
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+			if (map[i][j] == DOT_EMPTY) return false;
+			}
+		}
+		return true;		
+	}
+	boolean isCellValid(int x, int y){
+		if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
+		if (map[y][x] == DOT_EMPTY) return true;
+		return false;
 	}
 }
