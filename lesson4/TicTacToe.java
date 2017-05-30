@@ -5,6 +5,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+
 class TicTacToe {
 	
 	final int SIZE=3;
@@ -141,4 +142,26 @@ class TicTacToe {
 		if (map[y][x] == DOT_EMPTY) return true;
 		return false;
 	}
+}
+
+class Map {
+	final int SIZE=3;	
+	
+	char[][] map=new char[SIZE][SIZE];
+	Map( char dot,) {
+		this.char[0][0]=dot;
+	}
+}
+
+class Player {	
+	turn()
+	
+}
+
+class human extends Player {
+	
+}
+
+class AI extends Player {
+	
 }
