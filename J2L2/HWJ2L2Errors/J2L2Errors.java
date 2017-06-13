@@ -27,6 +27,7 @@ public class J2L2Errors{
 					s=s.trim();//вырезает из строки подстроку без пробелов в начале и конце строки
 				}
 				catch(IndexOutOfBoundsException ex1){
+					System.out.println(ex1);
 					arr[i][j]="0";//присваиваем элементам массива (которым не передалось значение из строки) значение 0
 				}
 			}					
@@ -38,6 +39,7 @@ public class J2L2Errors{
 					sum=sum+Integer.parseInt(arr[i][j]);//преобразование строки в целый тип			
 				} 
 				catch(NumberFormatException ex2) {
+					System.out.println(ex2);
 					arr[i][j]="0";
 				}
 			}			
