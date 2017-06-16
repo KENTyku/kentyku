@@ -1,53 +1,51 @@
 /*	HW Java2 Lesson 3
 *	avtor: Tveritin Yuri
 *	version: 15.06.2017
-*	Arrays Words 
+*	Collection Framework
 */
+import java.util.*;
+
 public class HWJ2L3Collections{
 	
 	public static void main(String[] args){
-		String[] arraywords=new String[4];
-		arraywords={"Cat", "Dog"};
-		
-	/*	new J2L2Errors().doErrors();
-	}
-	String st="1 k a 2\n2 3 2 2";//для проверки
-	//String st="1 3 1 2\n2 3 2 2\n5 6 7 1\n3 3 1 0";
-	String [][] arr= new String[4][4];
-	int sum=0;	
-		
-	void doErrors(){
-		System.out.println(st);
-		System.out.println(doArray(st));
-		
-	}
-	float doArray(String s){		
-		
-		for (int i=0; i<4;i++){
-			for (int j=0; j<4;j++){
-				try{
-					arr[i][j]=s.substring(0,1);//вырезает из строки подстроку с нач по конечный элемент
-					s=s.substring(1);//вырезает из строки подстроку с нач элемента и до конца
-					s=s.trim();//вырезает из строки подстроку без пробелов в начале и конце строки
-				}
-				catch(IndexOutOfBoundsException ex1){
-					System.out.println(ex1);
-					arr[i][j]="0";//присваиваем элементам массива (которым не передалось значение из строки) значение 0
-				}
-			}					
+		String[] arraywords={"Cat","Dog","Ball","Monkey","Wolf","Dog","Ball",
+		"Monkey","Wolf","Dog","Ball","Monkey","Wolf","Dog","Ball","Monkey",
+		"Wolf","Dog","Dog","Dog","Wolf","Dog","Ball"};
+		int size=arraywords.length;
+		ArrayList<String> words=new ArrayList<String>();//for equally words
+		TreeSet<String> noew = new TreeSet<String>();//no equally words
+		for (int i=0;i<size;i++){
+			System.out.print(arraywords[i]+" ");//выводим исходный массив слов
+			words.add(arraywords[i]);//помещаем слова в ArrayList чтобы найти одинаковые элементы
+			noew.add(arraywords[i]);//помещаем слова в TreeSet для уникальности и сортировки
 		}
+		System.out.println();
+					
+		for (int i=0;i<size;i++)System.out.println(words.get(i)+"-"+Collections.frequency(words, words.get(i)));//подсчет слов
 		
-		for (int i=0; i<4;i++){
-			for (int j=0; j<4;j++){
-				try {
-					sum=sum+Integer.parseInt(arr[i][j]);//преобразование строки в целый тип			
-				} 
-				catch(NumberFormatException ex2) {
-					System.out.println(ex2);
-					arr[i][j]="0";
-				}
-			}			
-		}
-		return (sum/2);			*/
+		System.out.println(noew); //список слов 
+		//add()
 	}
 }
+
+/*public class Phonebook{
+	
+	Map<String, String> pb = new TreeMap<>();
+        pb.put(Contact1.name,Contact1 info);
+        pb.put(Contact1.name,Contact1 info);
+        pb.put(Contact1.name,Contact1 info);
+        pb.put(Contact1.name,Contact1 info);
+	void write(){
+		pb.put(Contact1.name,Contact info)
+	}
+}
+
+public class Contacts{
+	public Contacts (String name, String info)
+		this name=name;
+		this.info=info;
+		
+	
+	
+	
+}*/
