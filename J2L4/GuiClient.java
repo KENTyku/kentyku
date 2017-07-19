@@ -8,8 +8,9 @@
 //import java.io.*;
 //import java.net.*;
 //import java.util.*;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.*;//для создания объектов gui
+import java.awt.*;//для создания gui и графики
+import java.awt.event.*;//обработка событий при реакции на объекты gui
 
 public class GuiClient{
 	
@@ -35,7 +36,8 @@ class MyForm1 extends JFrame {
 		add(jp[1], BorderLayout.SOUTH); //add panel on form
 		//на первую панель кладем 
 		jp[0].setLayout(new BorderLayout()); //применяя компоновщик BorderLayout к первой панели
-		JTextArea jtacenter = new JTextArea(); //создаем многострочное текстовое поле JTextArea
+		final JTextArea jtacenter = new JTextArea(); /*создаем многострочное текстовое поле 
+			JTextArea*/
 		JScrollPane jspcenter = new JScrollPane(jtacenter);//создаем объект прокрутки текста JScrollPane куда помещаем созданное поле
 		JTextArea jtaright = new JTextArea(" Users "); //создаем многострочное текстовое поле JTextArea
 		JScrollPane jspright = new JScrollPane(jtaright);//создаем объект прокрутки текста JScrollPane куда помещаем созданное поле
@@ -57,7 +59,7 @@ class MyForm1 extends JFrame {
 		JMenu mEdit = new JMenu("Edit");//создание пункта меню
 		JMenuItem miFileNew = new JMenuItem("New");//создание подпункта меню
 		JMenuItem miFileExit = new JMenuItem("Exit");//создание подпункта меню
-		JMenuItem miEditCut = new JMenuItem("Cut");//создание подпункта меню
+		JMenuItem miEditCut = new JMenuItem("Add");//создание подпункта меню
 		setJMenuBar(mainMenu);//установка меню mainMenu
 		mainMenu.add(mFile);//добавление пункта в меню mainMenu
 		mainMenu.add(mEdit);//добавление пункта в меню mainMenu
@@ -65,18 +67,20 @@ class MyForm1 extends JFrame {
 		mFile.addSeparator(); // разделительная линия
 		mFile.add(miFileExit);//добавление подпункта в пункт mFile меню mainMenu
 		mEdit.add(miEditCut);//добавление подпункта в пункт mEdit меню mainMenu
-		//miFileExit.addActionListener(new ActionListener() {
-		//	@Override
-		//	public void actionPerformed(ActionEvent e) {
-		//		System.exit(0);
-		//	}
-		//});
-		//addWindowListener(new WindowAdapter() {
-		//	@Override
-		//	public void windowClosing(WindowEvent e) {
-		//		System.out.println("BYE");
-		//	}
-		//});
+		
+		//обработка событий в меню
+		miFileExit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});	
+		miEditCut.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jtacenter.append("Hello");//добавляет в основное поле чата строку Hello в конце.
+			}
+		});			
 		setVisible(true);
 
 
