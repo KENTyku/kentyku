@@ -57,10 +57,8 @@ class MyForm1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jtacenter.append(writecenter.getText()+"\n");//добавление в главное поле чата текста из поля ввода
-				try{
-					PrintWriter pw = new PrintWriter(new FileWriter("1.txt")); 
-					//pw.println(writecenter.getText()+"\n");
-					pw.println("qqqqqqqqqq");
+				try(PrintWriter pw = new PrintWriter(new FileWriter("1.txt"))){ 
+					pw.println(writecenter.getText()+"\n");//вывод информации в файл					
 				}
 				catch (Exception er){
 					System.out.println ("Error");
