@@ -5,7 +5,7 @@
  * @author Tveritin Yuri
  * @version 2 dated 18.07.2017
  */
-//import java.io.*;
+import java.io.*; //для ввода вывода информации
 //import java.net.*;
 //import java.util.*;
 import javax.swing.*;//для создания объектов gui
@@ -45,11 +45,29 @@ class MyForm1 extends JFrame {
 		jp[0].add(jspright, BorderLayout.EAST);//размещаем объект jsp на панель
 		//на вторую панель
 		jp[1].setLayout(new BorderLayout());//применяем компоновщик BorderLayout на второй панели
-		JTextArea writecenter = new JTextArea(); //создаем многострочное текстовое поле JTextArea
+		final JTextArea writecenter = new JTextArea(); //создаем многострочное текстовое поле JTextArea
 		JScrollPane writecenterscroll = new JScrollPane(writecenter);//создаем объект прокрутки текста JScrollPane куда помещаем созданное поле
 		JButton buttonSend = new JButton("Send ");
 		jp[1].add(writecenterscroll, BorderLayout.CENTER);//размещаем объект jsp на панель
 		jp[1].add(buttonSend, BorderLayout.EAST);//размещаем объект jsp на панель
+		
+		
+		//обработка события кнопки Send
+		buttonSend.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jtacenter.append(writecenter.getText()+"\n");//добавление в главное поле чата текста из поля ввода
+				try{
+					PrintWriter pw = new PrintWriter(new FileWriter("1.txt")); 
+					//pw.println(writecenter.getText()+"\n");
+					pw.println("qqqqqqqqqq");
+				}
+				catch (Exception er){
+					System.out.println ("Error");
+				}
+				writecenter.setText(null);//очистка поля ввода
+			}
+		});
 		
 		
 		//создание верхнего меню
@@ -78,7 +96,7 @@ class MyForm1 extends JFrame {
 		miEditCut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jtacenter.append("Hello");//добавляет в основное поле чата строку Hello в конце.
+				jtacenter.append("Hello \n");//добавляет в основное поле чата строку Hello в конце.
 			}
 		});			
 		setVisible(true);
